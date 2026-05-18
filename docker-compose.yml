@@ -1,0 +1,12 @@
+services:
+  sync:
+    build: .
+    volumes:
+      - mirrors:/mirrors
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${KNOT_DB_HOST_DIR:-./}:/data:ro
+    env_file: .env
+    restart: unless-stopped
+
+volumes:
+  mirrors:
